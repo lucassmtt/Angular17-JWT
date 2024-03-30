@@ -4,18 +4,22 @@ import {Observable} from "rxjs";
 
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.component.html',
-    styleUrls: ['home.component.css']
+  selector: 'app-home',
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-    content?: Observable<any>;
+    content?:any;
 
     constructor(private userService : UserService) { }
 
     ngOnInit(): void {
-        this.content = this.userService.getAll();
+        this.userService.getAll().subscribe(data => {
+          this.content = data;
+          console.log(this.content);
+        })
+
     }
 
 }
