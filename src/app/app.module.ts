@@ -1,8 +1,8 @@
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
-import {httpInterceptorProviders} from "./_helpers/http.interceptor";
+import {HttpInterceptorService} from "./_helpers/http.interceptor";
 import {HomeComponent} from "./api/home/home.component";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app.routing.module";
@@ -19,7 +19,7 @@ import {AppRoutingModule} from "./app.routing.module";
     AppRoutingModule
   ],
     providers: [
-        httpInterceptorProviders
+      { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
     ],
     bootstrap: [
       AppComponent

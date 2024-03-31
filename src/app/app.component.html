@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-
+  <div *ngIf="users.length > 0">
+    <ul>
+      <li *ngFor="let user of users">
+        <strong>Nome: </strong> {{user.name}}
+        <strong>Email: </strong> {{user.email}}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="users.length === 0">
+    <p>Nenhum usuario encontrado</p>
+  </div>
 </body>
 </html>

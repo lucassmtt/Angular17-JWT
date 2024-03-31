@@ -1,18 +1,54 @@
 import {Injectable} from "@angular/core";
-import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {map} from 'rxjs/operators'
 
 @Injectable()
-export class HttpRequestInterceptor implements HttpInterceptor {
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        req = req.clone({
-            withCredentials: true,
+export class HttpInterceptorService implements HttpInterceptor {
+
+  constructor() {
+  }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+      return next.handle(req).pipe(
+        map((event: HttpEvent<any>) => {
+
+          if (event instanceof HttpResponse && event.body) {
+
+            try {
+
+              event = event.clone({body: this.processResponse(event.body)});
+
+            } catch (error) {
+
+              console.log('Erro parsing response body: ' + error);
+
+            }
+          }
+          return event;
         })
+      )
+  }
 
-        return next.handle(req);
+  private processResponse(body: any) {
+
+    if (typeof body === 'string') {
+
+      try {
+
+        return JSON.parse(body);
+
+      } catch (error) {
+        console.log(error);
+        return body;
+      }
+    } else {
+      return body;
     }
-}
 
-export const httpInterceptorProviders = [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
-]
+
+      return JSON.parse(body);
+  }
+
+}
