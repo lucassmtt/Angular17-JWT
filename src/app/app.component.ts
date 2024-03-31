@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {UserService} from "./_services/user.service";
 import { Router } from "@angular/router";
-import {User} from "./entities";
+import {User} from "./models/user.model";
 
 @Component({
     selector: 'app-root',
@@ -17,16 +17,11 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe(
-      (data: any) => {
-        data.forEach((item: any) => {
-          this.users.push(this.jsonToUser(item));
-        });
-      },
-      (error) => {
-        console.log('Error ' + error);
-      }
-    )
+    this.userService.getAll().subscribe((users: User[]) => {
+      this.users = users;
+    });
+
+
   }
 
   jsonToUser(json: any): User {
@@ -34,3 +29,4 @@ export class AppComponent {
   }
 
 }
+

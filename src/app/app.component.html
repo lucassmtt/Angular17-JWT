@@ -5,17 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-  <div *ngIf="users.length > 0">
-    <ul>
-      <li *ngFor="let user of users">
-        <strong>Name: </strong> {{user.name}}
-        <strong>Email: </strong> {{user.email}}
-        <strong>Username: </strong> {{user.userName}}
-      </li>
-    </ul>
-  </div>
-  <div *ngIf="users.length === 0">
-    <p>Nenhum usuario encontrado</p>
+  <div>
+    @if (users.length) {
+      <ul>
+      @for (user of users; track users) {
+        <li>Email: {{ user.email }} - Username: {{ user.username }}</li>
+      }
+      </ul>
+    } @else {
+       <h1>Don't have users</h1>
+    }
   </div>
 </body>
 </html>
