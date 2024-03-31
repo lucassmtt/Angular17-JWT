@@ -12,7 +12,7 @@ export class UserService {
     }
 
     public getAll() : Observable<any> {
-        return this.http.get(API_URL, { responseType: 'text' })
+        return this.http.get(API_URL, { responseType: 'json' })
     }
 
     public getByOid(oid: String) : Observable<any> {

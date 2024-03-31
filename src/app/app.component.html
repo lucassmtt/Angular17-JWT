@@ -8,8 +8,9 @@
   <div *ngIf="users.length > 0">
     <ul>
       <li *ngFor="let user of users">
-        <strong>Nome: </strong> {{user.name}}
+        <strong>Name: </strong> {{user.name}}
         <strong>Email: </strong> {{user.email}}
+        <strong>Username: </strong> {{user.userName}}
       </li>
     </ul>
   </div>
