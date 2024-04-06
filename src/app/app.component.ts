@@ -2,6 +2,7 @@ import {Component, input, OnInit} from "@angular/core";
 import {UserService} from "./_services/user.service";
 import { Router } from "@angular/router";
 import {User} from "./models/user.model";
+import {last} from "rxjs";
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,12 @@ import {User} from "./models/user.model";
 export class AppComponent {
   users: User[] = [];
 
-  language = 'pt-br'
+  languageChoices = [
+    'pt-br',
+    'en-US',
+  ]
+
+  language : string;
 
   isLogged: false;
   idUsernameOrEmail: void;
@@ -29,7 +35,26 @@ export class AppComponent {
   protected readonly input = input;
   usernameOrEmail: any;
   password: any;
-  idSenha: any;
   idPassword: any;
+
+  signIn(usernameOrEmail: String, password: String) {
+  }
+
+  forgetPassword() {
+
+  }
+
+  protected readonly last = last;
+
+  setLanguage(lang : String) {
+    this.language = lang;
+
+    if (this.language === this.languageChoices[0]) {
+      console.log('Idioma selecionado: ' + lang)
+    } else {
+      console.log('Language selected: ' + lang)
+    }
+
+  }
 }
 

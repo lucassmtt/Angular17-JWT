@@ -27,7 +27,7 @@
         <div class="campo">
           <span class="material-symbols-outlined">person</span>
           @if(language == 'pt-br') {
-            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [class]="input" [size]="17" placeholder="Seu email" autocomplete="email" required minlength="5" maxlength="125">
+            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [class]="input" [size]="17" placeholder="Seu email ou username" autocomplete="email" required minlength="5" maxlength="125">
           } @else {
             <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [class]="input" [size]="17" placeholder="Your email or username" autocomplete="email" required minlength="5" maxlength="125">
           }
@@ -42,14 +42,25 @@
           }
           <label [for]="idPassword"></label>
         </div>
-        @if(language == 'pt-br') {
-          <input type="submit" value="Entrar" onclick="fake()">
-          <button onclick="fake()">Esqueci a senha</button>
+
+        @if(language == languageChoices[0]) {
+
+          <input type="submit" value="Entrar" (click)="signIn(usernameOrEmail, password)">
+
+          <button (click)="forgetPassword()" )>Esqueci a senha</button>
+
         } @else {
-          <input type="submit" value="Sign-In" onclick="fake()">
-          <button onclick="fake()">Forget password</button>
+
+          <input type="submit" value="Sign-In" (click)="signIn(usernameOrEmail,password)">
+
+          <button (click)="forgetPassword()">Forget password</button>
         }
+
       </form>
+    </div>
+    <div class="language-menu">
+      <a (click)="setLanguage(languageChoices[0])"><img src="app/assets/flags/brasil.png"></a>
+      <a (click)="setLanguage(languageChoices[1])"><img src="app/assets/flags/estados-unidos.png"></a>
     </div>
   </section>
 </main>
