@@ -6,18 +6,20 @@ import {HttpInterceptorService} from "./_helpers/http.interceptor";
 import {HomeComponent} from "./api/home/home.component";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app.routing.module";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent
     ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        NgOptimizedImage
+    ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
     ],

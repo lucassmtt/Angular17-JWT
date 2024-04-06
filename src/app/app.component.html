@@ -43,7 +43,7 @@
           <label [for]="idPassword"></label>
         </div>
 
-        @if(language == languageChoices[0]) {
+        @if(language == 'pt-br') {
 
           <input type="submit" value="Entrar" (click)="signIn(usernameOrEmail, password)">
 
@@ -55,12 +55,12 @@
 
           <button (click)="forgetPassword()">Forget password</button>
         }
-
       </form>
     </div>
-    <div class="language-menu">
-      <a (click)="setLanguage(languageChoices[0])"><img src="app/assets/flags/brasil.png"></a>
-      <a (click)="setLanguage(languageChoices[1])"><img src="app/assets/flags/estados-unidos.png"></a>
+
+    <div>
+      <a (click)="setLanguage('pt-br')"><img src="assets/flags/brasil.png" class="flags"></a>
+      <a (click)="setLanguage('en-US')"><img src="assets/flags/estados-unidos.png" class="flags"></a>
     </div>
   </section>
 </main>

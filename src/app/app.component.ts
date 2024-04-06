@@ -3,6 +3,9 @@ import {UserService} from "./_services/user.service";
 import { Router } from "@angular/router";
 import {User} from "./models/user.model";
 import {last} from "rxjs";
+import {requiresLinking} from "@angular-devkit/build-angular/src/tools/babel/presets/application";
+
+
 
 @Component({
     selector: 'app-root',
@@ -10,16 +13,9 @@ import {last} from "rxjs";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   users: User[] = [];
 
-  languageChoices = [
-    'pt-br',
-    'en-US',
-  ]
-
-  language : string;
-
-  isLogged: false;
   idUsernameOrEmail: void;
 
   constructor(private userService: UserService) {
@@ -45,16 +41,15 @@ export class AppComponent {
   }
 
   protected readonly last = last;
+  languageChoices: [
+    'pt-br',
+    'en-US'
+  ]
 
-  setLanguage(lang : String) {
+  language: string;
+
+  setLanguage(lang : string) {
     this.language = lang;
-
-    if (this.language === this.languageChoices[0]) {
-      console.log('Idioma selecionado: ' + lang)
-    } else {
-      console.log('Language selected: ' + lang)
-    }
-
   }
-}
 
+}

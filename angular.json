@@ -23,7 +23,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "assets": [
+              "src/assets/flags/brasil.png",
+              "src/assets/flags/estados-unidos.png"
+            ]
           },
           "configurations": {
             "production": {
