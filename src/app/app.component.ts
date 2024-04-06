@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, input, OnInit} from "@angular/core";
 import {UserService} from "./_services/user.service";
 import { Router } from "@angular/router";
 import {User} from "./models/user.model";
@@ -11,7 +11,10 @@ import {User} from "./models/user.model";
 export class AppComponent {
   users: User[] = [];
 
-  response: any;
+  language = 'pt-br'
+
+  isLogged: false;
+  idUsernameOrEmail: void;
 
   constructor(private userService: UserService) {
   }
@@ -21,12 +24,12 @@ export class AppComponent {
       this.users = users;
     });
 
-
   }
 
-  jsonToUser(json: any): User {
-    return new User(json.userName, json.email, json.name);
-  }
-
+  protected readonly input = input;
+  usernameOrEmail: any;
+  password: any;
+  idSenha: any;
+  idPassword: any;
 }
 

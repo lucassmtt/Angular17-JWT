@@ -8,12 +8,12 @@ import { UserService } from "../../_services/user.service";
 })
 export class HomeComponent implements OnInit {
 
-     content: string = "";
+    isLogged : boolean = false;
 
     constructor(private userService : UserService) { }
 
     ngOnInit(): void {
-      this.content = "Hello world";
+
 
     }
 

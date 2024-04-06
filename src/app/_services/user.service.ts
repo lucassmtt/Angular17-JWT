@@ -28,4 +28,5 @@ export class UserService {
         return this.http.get(API_URL + username, { responseType: 'text'} )
     }
 
+
 }

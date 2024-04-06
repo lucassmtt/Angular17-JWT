@@ -9,3 +9,7 @@ export class User {
   email: String
   name: String
 }
+
+function jsonToUser(json: any): User {
+  return new User(json.userName, json.email, json.name);
+}
