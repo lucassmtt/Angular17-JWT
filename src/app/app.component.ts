@@ -12,13 +12,14 @@ import {User} from "./models/user.model";
 export class AppComponent {
 
   users: User[] = [];
-
+  isLoggedIn = false;
   idUsernameOrEmail: void;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.stor
     this.userService.getAll().subscribe((users: User[]) => {
       this.users = users;
     });
