@@ -18,27 +18,27 @@
       <h1>Login</h1>
 
       @if (language == 'pt-br') {
-        <p>Seja bem-vindo(a) novamente. Faça login para acessar sua conta e poder fazer as configurações no seu ambiente. </p>
+        <p>Seja bem-vindo(a) novamente. Faça login ou cria sua conta para acessar sua conta e poder fazer as configurações no seu ambiente. </p>
       } @else {
-        <p>Welcome again. Do the login to access your account and do make your env setup</p>
+        <p>Welcome again. Do the login or create your account to access and do make your env setup</p>
       }
 
       <form method="post" autocomplete="on">
         <div class="campo">
           <span class="material-symbols-outlined">person</span>
           @if(language == 'pt-br') {
-            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [class]="input" [size]="17" placeholder="Seu email ou username" autocomplete="email" required minlength="5" maxlength="125">
+            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [size]="17" placeholder="Seu email ou username" autocomplete="email" required minlength="5" maxlength="125">
           } @else {
-            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail" [class]="input" [size]="17" placeholder="Your email or username" autocomplete="email" required minlength="5" maxlength="125">
+            <input type="email" [name]="usernameOrEmail" [id]="idUsernameOrEmail"  [size]="17" placeholder="Your email or username" autocomplete="email" required minlength="5" maxlength="125">
           }
           <label [for]="idUsernameOrEmail"></label>
         </div>
         <div class="campo">
           <span class="material-symbols-outlined">key</span>
           @if(language == 'pt-br'){
-            <input type="password" [name]="password" [id]="idPassword" [class]="input" size="17" placeholder="Sua senha" autocomplete="current-password" minlength="8" maxlength="50" required>
+            <input type="password" [name]="password" [id]="idPassword" size="17" placeholder="Sua senha" autocomplete="current-password" minlength="8" maxlength="50" required>
           } @else {
-            <input type="password" [name]="password" [id]="idPassword" [class]="input" size="17" placeholder="Sua senha" autocomplete="current-password" minlength="8" maxlength="50" required>
+            <input type="password" [name]="password" [id]="idPassword" size="17" placeholder="Sua senha" autocomplete="current-password" minlength="8" maxlength="50" required>
           }
           <label [for]="idPassword"></label>
         </div>
