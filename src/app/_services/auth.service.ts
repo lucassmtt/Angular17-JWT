@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {computed, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {Observable} from "rxjs";
@@ -19,17 +19,55 @@ export class AuthService {
     };
 
     return this.http.post(API_URL + '/login', body, { responseType: 'json'} )
+
+    const response = this.http.post(API_URL + '/login', body, { responseType: 'text' });
+
+    response.subscribe({
+      next: value => {
+        return JSON.parse(value);
+      },
+      error: value => {
+        console.log(value.message)
+      }
+    })
   }
 
-  public register(usernameOrEmail: String, password: String) : any {
-    var validate: Validation = this.validation(usernameOrEmail, password);
+  register(usernameOrEmail: String, password: String) {
+
+    const validate: Validation = this.validation(usernameOrEmail, password);
 
     if (validate.flag) {
       return validate;
     } else {
-      // continue
+      const body = {
+        usernameOrEmail: usernameOrEmail,
+        password: password
+      }
+      return this.http.post(API_URL + '/register', body, { responseType: 'json' });
+    }
+
+    if (validate.getValue() == true) {
+      const body = {
+        usernameOrEmail: usernameOrEmail,
+        password: password
+      }
+
+      const response = this.http.post(API_URL + '/register', body, { responseType: 'json' });
+
+      response.subscribe({
+        next: (response: any) => {
+          return JSON.parse(response.data);
+        },
+        error: (response: any) => {
+          console.log(response.mensagem);
+
+        },
+      })
+
     }
   }
+
+
 
   public validation(usernameOrEmail: String, password: String) : Validation {
 
@@ -70,5 +108,9 @@ class Validation {
 
   setValue(flag: boolean) {
     this.flag = flag;
+  }
+
+  getValue(): boolean {
+    return this.flag;
   }
 }
