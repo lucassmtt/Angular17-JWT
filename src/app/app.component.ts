@@ -1,7 +1,8 @@
 import {Component, input, OnInit} from "@angular/core";
 import {UserService} from "./_services/user.service";
 import {User} from "./models/user.model";
-
+import {StorageService} from "./_services/storage.service";
+import {AuthService} from "./_services/auth.service";
 
 
 @Component({
@@ -15,15 +16,10 @@ export class AppComponent {
   isLoggedIn = false;
   idUsernameOrEmail: void;
 
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService, private authService: AuthService, private storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.stor
-    this.userService.getAll().subscribe((users: User[]) => {
-      this.users = users;
-    });
-
+    this.isLoggedIn = this.storageService.isLoggedIn();
   }
 
   usernameOrEmail: any;
@@ -31,6 +27,7 @@ export class AppComponent {
   idPassword: any;
 
   signIn(usernameOrEmail: String, password: String) {
+    this.authService.login(usernameOrEmail, password);
   }
 
   forgetPassword() {
@@ -42,7 +39,7 @@ export class AppComponent {
     'en-US'
   ]
 
-  language: string;
+  public language: string;
 
   setLanguage(value: string) {
     this.language = value;
