@@ -3,7 +3,7 @@ import {AppComponent} from "./app.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpInterceptorService} from "./_helpers/http.interceptor";
-import {HomeComponent} from "./api/home/home.component";
+import {HomeComponent} from "./home/home.component";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app.routing.module";
 import {NgOptimizedImage} from "@angular/common";

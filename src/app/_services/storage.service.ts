@@ -1,6 +1,5 @@
 import {Inject} from "@angular/core";
 import {User} from "../models/user.model";
-import {Observable} from "rxjs";
 
 var USER_KEY = 'auth-user';
 
